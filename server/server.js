@@ -14,21 +14,23 @@ app.use(bodyParser.json());
 
 app.post('/postinput', (req, res) => {
   console.log("post");
+  console.log("post", req);
+  console.log("post", req.body);
     var input = new Input({
-      latitude: res.body.latitude,
-      longitude: res.body.longitude,
-      accuracy: res.body.accuracy,
-      altitude: res.body.altitude,
-      time: res.body.time,
-      roll: res.body.roll,
-      azimuth: res.body.azimuth,
-      pitch: res.body.pitch,
-      magneticField_X: res.body.magneticField_X,
-      magneticField_Y: res.body.magneticField_Y,
-      magneticField_Z: res.body.magneticField_Z,
-      accelerometer_X: res.body.accelerometer_X,
-      accelerometer_Y: res.body.accelerometer_Y,
-      accelerometer_Z: res.body.accelerometer_Z,
+      latitude: req.body.latitude,
+      longitude: req.body.longitude,
+      accuracy: req.body.accuracy,
+      altitude: req.body.altitude,
+      time: req.body.time,
+      roll: req.body.roll,
+      azimuth: req.body.azimuth,
+      pitch: req.body.pitch,
+      magneticField_X: req.body.magneticField_X,
+      magneticField_Y: req.body.magneticField_Y,
+      magneticField_Z: req.body.magneticField_Z,
+      accelerometer_X: req.body.accelerometer_X,
+      accelerometer_Y: req.body.accelerometer_Y,
+      accelerometer_Z: req.body.accelerometer_Z,
       
     });
   

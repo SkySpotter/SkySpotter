@@ -2,14 +2,10 @@ var mongoose = require('mongoose');
 
 var Input = mongoose.model('Input', {
   latitude: {
-    type: Number,
-    required: true,
-    minlength: 1,
+    type: String,
   },
   longitude: {
-    type: Number,
-    required: true,
-    minlength: 1,
+    type: String,
   },
   accuracy:
   {
