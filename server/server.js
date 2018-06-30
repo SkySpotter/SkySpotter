@@ -34,18 +34,17 @@ app.post('/postinput', (req, res) => {
       accelerometer_Z: req.body.accelerometer_Z,
       
     });
+
+    var event = new Event({
+      latitude : req.body.latitude,
+      longitude: req.body.longitude,
+      time: req.body.time,
+      fake: true,
+    });
+    event.save();
   
     input.save().then((doc) => 
     {
-      var event = new Event({
-        latitude : req.body.latitude,
-        longitude: req.body.longitude,
-        time: req.body.time,
-        fake: true,
-      });
-
-      event.save();
-
       res.send(doc);
     }, (e) => {
       res.status(400).send(e);
