@@ -3,6 +3,7 @@ var bodyParser = require('body-parser');
 
 var {mongoose} = require('./db/mongoose');
 
+var {Input} = require('./models/input');
 const fs = require('fs');
 
 const port = process.env.PORT || 3000;
@@ -11,12 +12,24 @@ var app = express();
 
 app.use(bodyParser.json());
 
-app.post('/postInput', (req, res) => {
+app.post('/postinput', (req, res) => {
+  console.log("post");
     var input = new Input({
-      lng: req.body.lng,
-      lat : req.body.lat,
-      time : req.body.time,
-      deviceId : req.body.deviceId,
+      Latitude: res.body.Latitude,
+      Longitude: res.body.Longitude,
+      Accuracy: res.body.Accuracy,
+      Altitude: res.body.Altitude,
+      Time: res.body.Time,
+      Roll: res.body.Roll,
+      Azimuth: res.body.Azimuth,
+      Pitch: res.body.Pitch,
+      MagneticField_X: res.body.MagneticField_X,
+      MagneticField_Y: res.body.MagneticField_Y,
+      MagneticField_Z: res.body.MagneticField_Z,
+      Accelerometer_X: res.body.Accelerometer_X,
+      Accelerometer_Y: res.body.Accelerometer_Y,
+      Accelerometer_Z: res.body.Accelerometer_Z,
+      
     });
   
     input.save().then((doc) => 
@@ -29,7 +42,7 @@ app.post('/postInput', (req, res) => {
 
 
   app.get('/getInputs', (req, res) => {
-    input.find().then((inputs) => {
+    Input.find().then((inputs) => {
       res.send({inputs});
     }, (e) => {
       res.status(400).send(e);
