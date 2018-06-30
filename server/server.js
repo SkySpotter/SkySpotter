@@ -27,6 +27,15 @@ app.post('/postInput', (req, res) => {
     });
   });
 
+
+  app.get('/getInputs', (req, res) => {
+    input.find().then((inputs) => {
+      res.send({inputs});
+    }, (e) => {
+      res.status(400).send(e);
+    });
+  });
+
   app.get('/getevents', (req, res) => {
     var id = req.params.id;
   
