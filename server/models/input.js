@@ -1,61 +1,61 @@
 var mongoose = require('mongoose');
 
 var Input = mongoose.model('Input', {
-  Latitude: {
+  latitude: {
     type: Number,
     required: true,
     minlength: 1,
   },
-  Longitude: {
+  longitude: {
     type: Number,
     required: true,
     minlength: 1,
   },
-  Accuracy:
+  accuracy:
   {
     type: Number,
   },
-  Altitude:
+  altitude:
   {
     type: Number,
   },
-  Time: {
+  time: {
     type: String,
     default: new Date().toUTCString()
   },
-  Roll:
+  roll:
   {
     type: Number,
   },
-  Azimuth:
+  azimuth:
   {
     type: Number,
   },
-  Pitch:
+  pitch:
   {
     type: Number,
   },
-  MagneticField_X:
+  magneticField_X:
   {
     type: Number,
   },
-  MagneticField_Y:
+  magneticField_Y:
   {
     type: Number,
   },
-  MagneticField_Z:
+  magneticField_Z:
   {
     type: Number,
   },
-  Accelerometer_X:
+  accelerometer_X:
   {
     type: Number,
   },
-  Accelerometer_Y:
+  accelerometer_Y:
   {
     type: Number,
   },
-  Accelerometer_Z:
+  accelerometer_Z:
   {
     type: Number,
   },
