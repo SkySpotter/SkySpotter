@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var {mongoose} = require('./db/mongoose');
 
 var {Input} = require('./models/input');
+var {Event} = require('./models/event');
 const fs = require('fs');
 
 const port = process.env.PORT || 3000;
@@ -36,6 +37,15 @@ app.post('/postinput', (req, res) => {
   
     input.save().then((doc) => 
     {
+      var event = new Event({
+        latitude : req.body.latitude,
+        longitude: req.body.longitude,
+        time: req.body.time,
+        fake: true,
+      });
+
+      event.save();
+
       res.send(doc);
     }, (e) => {
       res.status(400).send(e);
@@ -52,20 +62,10 @@ app.post('/postinput', (req, res) => {
   });
 
   app.get('/getevents', (req, res) => {
-    var id = req.params.id;
-  
-    if (!ObjectID.isValid(id)) {
-      return res.status(404).send();
-    }
-  
-    Todo.findById(id).then((todo) => {
-      if (!todo) {
-        return res.status(404).send();
-      }
-  
-      res.send({todo});
-    }).catch((e) => {
-      res.status(400).send();
+    Event.find().then((events) => {
+      res.send({events});
+    }, (e) => {
+      res.status(400).send(e);
     });
   });
 
