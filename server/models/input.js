@@ -19,15 +19,27 @@ var Input = mongoose.model('Input', {
     type: String,
     default: new Date().toUTCString()
   },
-  roll:
+  rollDegree:
   {
     type: Number,
   },
-  azimuth:
+  azimuthDegree:
   {
     type: Number,
   },
-  pitch:
+  pitchDegree:
+  {
+    type: Number,
+  },
+  rollRadian:
+  {
+    type: Number,
+  },
+  azimuthRadian:
+  {
+    type: Number,
+  },
+  pitchRadian:
   {
     type: Number,
   },
@@ -55,6 +67,14 @@ var Input = mongoose.model('Input', {
   {
     type: Number,
   },
+  hasMagnetometerData:
+  {
+    type:Boolean
+  },
+  hasAccelerometerData:
+  {
+    type:Boolean
+  }
 });
 
 module.exports = {Input};
