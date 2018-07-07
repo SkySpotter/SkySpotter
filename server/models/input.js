@@ -74,6 +74,18 @@ var Input = mongoose.model('Input', {
   hasAccelerometerData:
   {
     type:Boolean
+  },
+  image:
+  {
+
+  },
+  imageHeight:
+  {
+    type:Number,
+  },
+  imageWidth:
+  {
+    type:Number
   }
 });
 
