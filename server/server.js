@@ -10,7 +10,7 @@ const fs = require('fs');
 const port = process.env.PORT || 3000;
 
 var app = express();
-
+app.use(express.bodyParser({limit: '50mb'}));
 app.use(bodyParser.json());
 
 app.post('/postinput', (req, res) => {
