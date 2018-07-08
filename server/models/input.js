@@ -86,7 +86,35 @@ var Input = mongoose.model('Input', {
   imageWidth:
   {
     type:Number
-  }
+  },
+  orientation_z:
+  {
+    type:Number,
+  },
+  orientation_y:
+  {
+    type:Number,
+  },
+  orientation_x:
+  {
+    type:Number,
+  },
+  orientation_w:
+  {
+    type:Number,
+  },
+  agularVelocity_Z:
+  {
+    type:Number
+  },
+  angularVelocity_Y:
+  {
+    type:Number
+  },
+  angularVelocity_X:
+  {
+    type:Number
+  },
 });
 
 module.exports = {Input};
