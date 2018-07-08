@@ -68,21 +68,23 @@ app.post('/postinput', (req, res) => {
           var geoLocation = calc.triangulate(firstInput.latitude, firstInput.longitude, firstInput.altitude, secondInput.latitude,
             secondInput.longitude, secondInput.altitude, firstInput.azimuthRadian, firstInput.pitchRadian,
             secondInput.azimuthRadian, secondInput.pitchRadian);
+
+            try {
+              var eve = new Event(
+              {
+               latitude :geoLocation[0],
+               longitude : geoLocation[1],
+       
+              } );
+       
+              eve.save();
+              
+             } catch (error) {
+               
+             }
         }
 
-      try {
-       var eve = new Event(
-       {
-        latitude = geoLocation[0],
-        longitude = geoLocation[1],
-
-       } );
-
-       eve.save();
-       
-      } catch (error) {
-        
-      }
+   
 
       });    
   
