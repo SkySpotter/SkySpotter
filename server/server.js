@@ -16,6 +16,7 @@ var app = express();
 app.use(bodyParser.json());
 
 app.post('/postinput', (req, res) => {
+
     var input = new Input({
       latitude: req.body.latitude,
       longitude: req.body.longitude,
@@ -49,7 +50,11 @@ app.post('/postinput', (req, res) => {
     });
 
   
-    var timestamp = new Date(Date.now() - 1 * 5 * 60 * 1000);
+     
+  
+    input.save().then((doc) => 
+    {
+      var timestamp = new Date(Date.now() - 1 * 60 * 60 * 1000);
     
     var hexSeconds = Math.floor(timestamp/1000).toString(16);
 
@@ -59,15 +64,20 @@ app.post('/postinput', (req, res) => {
       "_id": { "$gt" : constructedObjectId }
       }).then((inputs) =>
       {
+        console.log("inputs", inputs);
+
         if(inputs.length > 1)
         {
           var firstInput = inputs[0];
+          console.log("firstInput", firstInput);
 
           var secondInput = inputs[1];
+          console.log("secondInput", secondInput);
 
           var geoLocation = calc.triangulate(firstInput.latitude, firstInput.longitude, firstInput.altitude, secondInput.latitude,
             secondInput.longitude, secondInput.altitude, firstInput.azimuthRadian, firstInput.pitchRadian,
             secondInput.azimuthRadian, secondInput.pitchRadian);
+            console.log("geoLocation", geoLocation);
 
             try {
               var eve = new Event(
@@ -86,10 +96,7 @@ app.post('/postinput', (req, res) => {
 
    
 
-      });    
-  
-    input.save().then((doc) => 
-    {
+      });   
       res.send(doc);
     }, (e) => {
       res.status(400).send(e);
