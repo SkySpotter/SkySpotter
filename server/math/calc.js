@@ -5,8 +5,6 @@ var triangulate =(lat1, lon1, alt1, lat2, lon2, alt2, az1, el1, az2, el2)=>
 {
     var RA = 6378137;
 
-    el1 = el1 * math.pi / 180;
-    el2 = el2 * math.pi / 180;
     var p1 = math.ctranspose([lat1 * RA, lon1 * RA * Math.cos(lat1), alt1]);
 
     console.log("p1", p1);
